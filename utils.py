@@ -19,21 +19,19 @@ def get_text(url):
 
 
 def get_news_by_tag(tag):
-    url = f"https://www.linux.org.ru/tag/{tag}"
+    url = f"https://www.linux.org.ru/tag/{tag}?section=1&offset=0"
     try:
-        response = requests.get(url)
-        soup = BeautifulSoup(response.text, "html.parser")
-        return get_news(url) + [Article(URL[:-6] + n.get("href"), n.text.strip()) for n in soup.find("div", id="tag-page-news").findAll("a")]
+        # response = requests.get(url)
+        return get_news(url)
     except:
         return []
 
 
 def save_article(url, name):
-    with open(f"{name}.md","w") as f:
+    with open(f"{name}.md", "w") as f:
         articleText = get_text(url).text
         f.write(markdownify.markdownify(articleText))
 
 
-
 if __name__ == "__main__":
-    save_article("https://www.linux.org.ru/news/russia/17224117","djkdk")
+    print(get_news_by_tag("lisp"))
