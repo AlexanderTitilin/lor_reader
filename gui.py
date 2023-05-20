@@ -82,8 +82,9 @@ class Reader(QtWidgets.QWidget):
 
     @QtCore.Slot()
     def save_article(self):
-        name = self.listNews.currentItem().text()
-        utils.save_article(self.news[name], name)
+        if self.listNews.currentItem() is not None:
+            name = self.listNews.currentItem().text()
+            utils.save_article(self.news[name], name)
 
 
 if __name__ == "__main__":
