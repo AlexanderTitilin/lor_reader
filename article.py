@@ -1,7 +1,8 @@
 from dataclasses import dataclass
-
+import datetime
 
 @dataclass
 class Article:
-    url: str
     name: str
+    url: str
+    date: datetime.date
